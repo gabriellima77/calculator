@@ -46,6 +46,7 @@ h1{
 #display {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     width: 320px;
     height: 100px;
     background-color: rgb(107, 86, 86);
@@ -53,6 +54,14 @@ h1{
     color: rgb(223, 223, 223);
     align-items: flex-end;
     font-size: 2rem;
+}
+
+#value {
+    font-size: 3rem;
+}
+
+#operation {
+    font-size: 1.2rem;
 }
 
 #others {
