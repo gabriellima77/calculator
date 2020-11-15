@@ -31,6 +31,7 @@ h1{
 }
 
 .btn {
+    box-sizing: border-box;
     border-radius: 5px;
     width: 75px;
     height: 55px;
@@ -41,6 +42,12 @@ h1{
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+.btn:active {
+    border: none;
 }
 
 #display {
@@ -58,10 +65,15 @@ h1{
 
 #value {
     font-size: 3rem;
+    margin-right: 5px;
 }
 
 #operation {
+    margin-top: 5px;
+    margin-right: 5px;
     font-size: 1.2rem;
+    color: black;
+    font-weight: 200;
 }
 
 #others {
@@ -74,7 +86,11 @@ h1{
 #clear {
     width: 120px;
     background-color: rgb(73, 131, 184);
-    margin-right: 15%;
+    margin-right: 2%;
+}
+
+#percent {
+    margin-right: 2%;
 }
 
 #numbers {
