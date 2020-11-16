@@ -1,5 +1,6 @@
 const buttons = document.querySelectorAll('.btn');
 const display = document.querySelector('#display');
+const keyDown = new Event('click', getValue)
 let value = [''];
 
 const add = (a, b) =>  +a + +b;
@@ -41,6 +42,20 @@ function operate(operator, a, b){
     }
 }
 
+function getKey(e){
+    console.log(e.key);
+    let keys = document.querySelectorAll('.btn');
+    console.log(keys);
+    keys.forEach(element => {
+        if(element.textContent === e.key || element.id === e.key){
+            element.dispatchEvent(keyDown);
+        }
+        else if(element.dataset.key === e.key){
+            element.dispatchEvent(keyDown);
+        }
+    });
+}
+
 function getValue(){
     display.style.color = 'rgb(223, 223, 223)';
     let total = document.querySelector('#value');
@@ -58,9 +73,11 @@ function getValue(){
     if( this.textContent.match(/[^0-9.←]/g) || value[value.length - 1].match(/[^0-9.←]/g) ){
         if(!(this.textContent === value[value.length - 1])){
             value.push(this.textContent);
-            operation.textContent = value.join(' ');
             if(value[value.length - 1].match(/[0-9.]/g) ){
                 total.textContent = value[value.length - 1];
+            }
+            else{
+                operation.textContent = value.join(' ');
             }
         }
     }
@@ -70,10 +87,10 @@ function getValue(){
             if(value.length < 1){
                 value = [''];
             }
-            total.textContent = '';
+            total.textContent = '0';
             operation.textContent = value.join(' ');
             return;
-        }it
+        }
         if(!value[value.length - 1].includes('.') || this.textContent !== '.'){
             value[value.length - 1] += this.textContent;
             total.textContent = value[value.length - 1];
@@ -98,7 +115,7 @@ function calculator(){
         result = operate(value[i], result, value[i+1]);
     }
     if(typeof result === 'number'){
-        value = [Math.round(result * 100) / 100];
+        value = [(Math.round(result * 100) / 100).toString()];
         total.textContent = value;
         operation.textContent = value;
     }
@@ -109,3 +126,4 @@ function calculator(){
 
 getBackGround();
 buttons.forEach( button => button.addEventListener('click', getValue));
+window.addEventListener('keydown', getKey);
